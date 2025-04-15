@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKAO Events Timeline: Protected Disclosure and Retaliatory Actions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a365d;
+        }
+        
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #1a365d;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #fff;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #fff;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #fff;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #fff transparent transparent;
+        }
+        
+        .left::after, .right::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #FF9F55;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-title {
+            color: #1a365d;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-text {
+            margin-bottom: 0;
+        }
+        
+        .disclosure-event {
+            border-left: 5px solid #20c997;
+        }
+        
+        .retaliation-event {
+            border-left: 5px solid #dc3545;
+        }
+        
+        .surveillance-event {
+            border-left: 5px solid #fd7e14;
+        }
+        
+        .phishing-event {
+            border-left: 5px solid #dc3545;
+            background-color: #f8d7da;
+        }
+        
+        .lockdown-event {
+            border-left: 5px solid #dc3545;
+            background-color: #f8d7da;
+        }
+        
+        .header-section {
+            background-color: #1a365d;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .evidence-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .evidence-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .evidence-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1a365d;
+            font-weight: bold;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .tag-disclosure {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        .tag-retaliation {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        
+        .tag-surveillance {
+            background-color: #fff3cd;
+            color: #664d03;
+        }
+        
+        .tag-phishing {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        
+        .tag-lockdown {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        
+        .time-marker {
+            font-weight: bold;
+            color: #dc3545;
+        }
+        
+        .coordinated-highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 30px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .timeline-container::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #fff transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <h1>SKAO Events Timeline: Protected Disclosure and Retaliatory Actions</h1>
+        <p>Chronological documentation of events from initial disclosure to digital exclusion</p>
+    </div>
+
+    <div class="timeline-container">
+        <!-- January 19, 2021 - Employment Start -->
+        <div class="timeline-item left">
+            <div class="content">
+                <div class="timeline-date">January 19, 2021</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag">EMPLOYMENT</span>
+                    SKAO Employment Commencement
+                </h3>
+                <p class="timeline-text">Commencement of employment as Infrastructure Project Manager at SKAO with indefinite contract term as specified in employment agreement.</p>
+            </div>
+        </div>
+
+        <!-- 2022-2024 - Pattern of Procurement Irregularities -->
+        <div class="timeline-item right">
+            <div class="content">
+                <div class="timeline-date">2022-2024</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag">IRREGULARITIES</span>
+                    Pattern of Procurement Irregularities
+                </h3>
+                <p class="timeline-text">Documentation of systematic procurement manipulation strategy by SKAO Head of Procurement, including deliberate exposure of budget parameters, strategic manipulation of NDAs, abandonment of standard evaluation procedures, and nepotistic contracting practices.</p>
+            </div>
+        </div>
+
+        <!-- 2023-2024 - Previous IT Incidents -->
+        <div class="timeline-item left">
+            <div class="content surveillance-event">
+                <div class="timeline-date">2023-2024</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-surveillance">SURVEILLANCE</span>
+                    Previous IT Surveillance Incidents
+                </h3>
+                <p class="timeline-text">Multiple documented instances of SKAO IT conducting unauthorized "simulated phishing tests" targeting specific staff members engaged in internal grievances or disputes. Selective deployment of remote device management protocols against staff who raised governance concerns.</p>
+            </div>
+        </div>
+
+        <!-- March-April 2025 - Discrimination Documentation -->
+        <div class="timeline-item right">
+            <div class="content retaliation-event">
+                <div class="timeline-date">March-April 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-retaliation">DISCRIMINATION</span>
+                    Documented Discriminatory Treatment
+                </h3>
+                <p class="timeline-text">Senior SKAO official explicitly stated that "non-Oxford, non-British professionals struggle to secure senior positions in SKAO, especially if they are outspoken or from minority backgrounds." Systematic denial of career progression despite expanded responsibilities and performance recognition.</p>
+            </div>
+        </div>
+
+        <!-- March 20, 2025 - Constructive Dismissal Attempt -->
+        <div class="timeline-item left">
+            <div class="content retaliation-event">
+                <div class="timeline-date">March 20, 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-retaliation">RETALIATION</span>
+                    Constructive Dismissal Attempt
+                </h3>
+                <p class="timeline-text">Direct request to "pull back from role of Deputy Senior Project Manager" despite previously expanded responsibilities. Coordinated efforts to obstruct visa process while simultaneously supporting others. HR official directly advised consultants to "slow down the process" while Kaushik was on leave.</p>
+            </div>
+        </div>
+
+        <!-- March 21, 2025 - Initial Draft of Protected Disclosure -->
+        <div class="timeline-item right">
+            <div class="content disclosure-event">
+                <div class="timeline-date">March 21, 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-disclosure">PREPARATION</span>
+                    Initial Draft of Protected Disclosure
+                </h3>
+                <p class="timeline-text">Preparation of comprehensive protected disclosure documenting systematic procurement malpractice, financial mismanagement, and governance failures at SKAO.</p>
+            </div>
+        </div>
+
+        <!-- April 4, 2025 - Protected Disclosure Submission -->
+        <div class="timeline-item left">
+            <div class="content disclosure-event">
+                <div class="timeline-date">April 4, 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-disclosure">DISCLOSURE</span>
+                    Protected Disclosure Submission
+                </h3>
+                <p class="timeline-text">Formal submission of comprehensive protected disclosure to SKAO Council Chair and Financial Reporting Council (UK) documenting procurement irregularities, financial mismanagement, and governance failures at SKAO.</p>
+            </div>
+        </div>
+
+        <!-- April 10-11, 2025 - LinkedIn Surveillance -->
+        <div class="timeline-item right">
+            <div class="content surveillance-event">
+                <div class="timeline-date">April 10-11, 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-surveillance">SURVEILLANCE</span>
+                    LinkedIn Profile Monitoring
+                </h3>
+                <p class="timeline-text">SKAO IT Manager Jacob Price and SKAO-CSIRO IT Liaison Tony A. accessed Kaushik Bose's LinkedIn profile, documented through LinkedIn notification system. This surveillance activity directly preceded the coordinated digital attack.</p>
+            </div>
+        </div>
+
+        <!-- April 12, 2025 - Phishing Email -->
+        <div class="timeline-item left">
+            <div class="content phishing-event">
+                <div class="timeline-date">April 12, 2025 - <span class="time-marker">9:11 PM AWST</span></div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-phishing">PHISHING</span>
+                    Sophisticated Phishing Attempt
+                </h3>
+                <p class="timeline-text">Receipt of sophisticated phishing email at personal Gmail address from "connect@bitmesrau.mails.org.in" purporting to be from BIT Mesra Alumni Association and containing suspicious tracking links. The email utilized personal educational history information only available in SKAO HR records.</p>
+            </div>
+        </div>
+
+        <!-- April 12, 2025 - Digital Systems Lockout -->
+        <div class="timeline-item right">
+            <div class="content lockdown-event">
+                <div class="timeline-date">April 12, 2025 - <span class="time-marker">9:21 PM AWST</span></div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-lockdown">LOCKDOWN</span>
+                    Comprehensive Digital Systems Lockout
+                </h3>
+                <p class="timeline-text">Simultaneous revocation of all digital access to SKAO systems including Dropbox corporate account, Outlook email access, Confluence knowledge management system, JIRA project management platform, and corporate laptop remote lockdown. This occurred exactly 10 minutes after the phishing email was received.</p>
+            </div>
+        </div>
+
+        <!-- April 12, 2025 - iPhone Deactivation -->
+        <div class="timeline-item left">
+            <div class="content lockdown-event">
+                <div class="timeline-date">April 12, 2025 - <span class="time-marker">9:30 PM AWST</span></div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-lockdown">LOCKDOWN</span>
+                    SKAO iPhone Remote Deactivation
+                </h3>
+                <p class="timeline-text">Remote deactivation of SKAO-managed iPhone through Mobile Device Management (MDM) protocols, completing the total communication blackout across all channels and devices.</p>
+            </div>
+        </div>
+
+        <!-- April 14, 2025 - Formal Documentation -->
+        <div class="timeline-item right">
+            <div class="content disclosure-event">
+                <div class="timeline-date">April 14, 2025</div>
+                <h3 class="timeline-title">
+                    <span class="category-tag tag-disclosure">DOCUMENTATION</span>
+                    Formal Documentation of Digital Exclusion
+                </h3>
+                <p class="timeline-text">Preparation and submission of comprehensive memorandum documenting coordinated digital exclusion and retaliatory actions following protected disclosure. Notification to SKAO Data Protection Officer regarding personal data breach aspects of the incident.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="coordinated-highlight">
+        <h3>Evidence of Coordination</h3>
+        <p>The events of April 12, 2025 represent a clear pattern of coordinated action:</p>
+        <ul>
+            <li>The preparation phase (LinkedIn surveillance) on April 10-11 by SKAO IT staff</li>
+            <li>The phishing email targeting personal account at 9:11 PM AWST on a Saturday evening</li>
+            <li>Comprehensive digital systems lockout exactly 10 minutes later at 9:21 PM AWST</li>
+            <li>Mobile device deactivation completing the communication blackout at 9:30 PM AWST</li>
+        </ul>
+        <p>The precise timing, comprehensive nature, and after-hours execution demonstrate deliberate coordination rather than routine administrative action. This pattern of events follows 8 days after the protected disclosure submission on April 4, 2025.</p>
+    </div>
+
+    <div class="evidence-section">
+        <h2>Documented Evidence Preserved</h2>
+        <div class="evidence-item">Employment contract (January 19, 2021) establishing indefinite term of employment</div>
+        <div class="evidence-item">Documentation of procurement irregularities (2022-2024)</div>
+        <div class="evidence-item">Records of previous IT surveillance incidents (2023-2024)</div>
+        <div class="evidence-item">Protected disclosure submitted to SKAO Council and Financial Reporting Council (April 4, 2025)</div>
+        <div class="evidence-item">Screenshots of LinkedIn activity notifications (April 10-11, 2025)</div>
+        <div class="evidence-item">Email headers and content of phishing attempt (April 12, 2025, 9:11 PM AWST)</div>
+        <div class="evidence-item">System access revocation timestamps (April 12, 2025, 9:21 PM AWST)</div>
+        <div class="evidence-item">JIRA access revocation logs (April 12, 2025, 9:21 PM AWST)</div>
+        <div class="evidence-item">Corporate laptop lockdown notification (April 12, 2025, 9:21 PM AWST)</div>
+        <div class="evidence-item">MDM device lockout notification (April 12, 2025, 9:30 PM AWST)</div>
+    </div>
+
+    <div class="signature-section">
+        <p>Prepared by: Kaushik Bose<br>
+        Infrastructure Project Manager<br>
+        Square Kilometre Array Observatory<br>
+        April 14, 2025</p>
+    </div>
+</body>
+</html>
