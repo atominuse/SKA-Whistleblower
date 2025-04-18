@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKAO Treatment Analysis: Kaushik Bose Case</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .index-card {
+            background-color: #f0e6ff;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .index-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #6a41c8;
+        }
+        
+        .index-label {
+            font-weight: 500;
+            color: #6a41c8;
+        }
+        
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .index-grid-item {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .chart-description {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .index-badge {
+            background-color: #e6f0ff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .index-badge-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2970cc;
+        }
+        
+        .index-badge-value {
+            font-size: 14px;
+            color: #2970cc;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #666;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .promise {
+            color: #2e7d32;
+        }
+        
+        .reality {
+            color: #c62828;
+        }
+        
+        .rating-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .rating-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        
+        .rating-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #6a41c8;
+        }
+        
+        .rating-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        
+        .rating-description {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            
+            .index-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .rating-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SKAO Treatment Analysis: Kaushik Bose Case</h1>
+        <h2>Indexed Visualization</h2>
+        <p>Based on documented experience from legal correspondence dated April 3, 2025</p>
+    </div>
+    
+    <!-- Overall Stonewalling Index Card -->
+    <div class="card">
+        <div class="flex-row">
+            <div>
+                <h2>Overall SKAO Stonewalling Index</h2>
+                <p>Composite measure of institutional treatment severity</p>
+            </div>
+            <div class="index-card">
+                <div class="index-value">86.5/100</div>
+                <p class="index-label">Extreme Institutional Stonewalling</p>
+            </div>
+        </div>
+        <div class="index-grid">
+            <div class="index-grid-item">Treatment Disparity: 88.3</div>
+            <div class="index-grid-item">Marginalization Severity: 89.0</div>
+            <div class="index-grid-item">Promise-Reality Gap: 76.0</div>
+            <div class="index-grid-item">Contribution Exploitation: 88.0</div>
+            <div class="index-grid-item">Immigration Vulnerability: 91.0</div>
+        </div>
+    </div>
+    
+    <!-- Treatment Evolution Timeline -->
+    <div class="card">
+        <div class="flex-row">
+            <div>
+                <h2>Treatment Evolution Timeline</h2>
+                <p>How SKAO's treatment changed from recruitment through whistleblowing</p>
+            </div>
+            <div class="index-badge">
+                <div class="index-badge-label">Treatment Disparity Index: 88.3</div>
+                <div class="index-badge-value">Extreme Disparity</div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="evolutionChart"></canvas>
+        </div>
+        <div class="chart-description">
+            <strong>Index Basis:</strong> Gap between utilization (90) and average of respect (5), inclusion (0), and promises (0) in final phase.
+        </div>
+    </div>
+    
+    <!-- 2-Column Section -->
+    <div class="grid-2col">
+        <!-- Marginalization Tactics -->
+        <div class="card">
+            <div class="flex-row">
+                <div>
+                    <h2>Marginalization Tactics Severity</h2>
+                    <p>Key events in the systematic marginalization campaign</p>
+                </div>
+                <div class="index-badge">
+                    <div class="index-badge-label">Marginalization Severity Index: 89.0</div>
+                    <div class="index-badge-value">Severe Marginalization</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="marginalizationChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Promise vs Reality Gap -->
+        <div class="card">
+            <div class="flex-row">
+                <div>
+                    <h2>Promise vs. Reality Gap</h2>
+                    <p>The disparity between promises and delivery</p>
+                </div>
+                <div class="index-badge">
+                    <div class="index-badge-label">Promise-Reality Gap Index: 76.0</div>
+                    <div class="index-badge-value">Severe Misrepresentation</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="promiseGapChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contribution Exploitation Pattern -->
+    <div class="card">
+        <div class="flex-row">
+            <div>
+                <h2>Contribution Exploitation Pattern</h2>
+                <p>High expectations of contribution with minimal recognition</p>
+            </div>
+            <div class="index-badge">
+                <div class="index-badge-label">Contribution Exploitation Index: 88.0</div>
+                <div class="index-badge-value">Severe Exploitation</div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="contributionChart"></canvas>
+        </div>
+    </div>
+    
+    <!-- 2-Column Section -->
+    <div class="grid-2col">
+        <!-- Immigration Vulnerability -->
+        <div class="card">
+            <div class="flex-row">
+                <div>
+                    <h2>Immigration Vulnerability Assessment</h2>
+                    <p>How visa misrepresentations created vulnerability</p>
+                </div>
+                <div class="index-badge">
+                    <div class="index-badge-label">Immigration Vulnerability Index: 91.0</div>
+                    <div class="index-badge-value">Extreme Vulnerability</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="immigrationChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Personal Life Impact -->
+        <div class="card">
+            <div class="flex-row">
+                <div>
+                    <h2>Personal Life Impact Assessment</h2>
+                    <p>How SKAO's treatment affected life stability</p>
+                </div>
+                <div class="index-badge">
+                    <div class="index-badge-label">Life Impact Index: 67.0</div>
+                    <div class="index-badge-value">Severe Impact</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="impactChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Promise vs Reality Table -->
+    <div class="card">
+        <h2>Promise vs. Reality Comparison</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>What Was Promised</th>
+                    <th>What Actually Happened</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Visa Pathway</td>
+                    <td class="promise">Global Talent visa with PR pathway</td>
+                    <td class="reality">Subclass 995 visa with no PR pathway</td>
+                </tr>
+                <tr>
+                    <td>Contract Duration</td>
+                    <td class="promise">'Infinite contract' with long-term security</td>
+                    <td class="reality">Position shown as 'zero FTE' by 2030</td>
+                </tr>
+                <tr>
+                    <td>Professional Role</td>
+                    <td class="promise">Respected Project Manager & Design Authority</td>
+                    <td class="reality">Replaced without notice, excluded from meetings</td>
+                </tr>
+                <tr>
+                    <td>Project Recognition</td>
+                    <td class="promise">Acknowledgment of contributions</td>
+                    <td class="reality">Systematic omission from communications</td>
+                </tr>
+                <tr>
+                    <td>Career Development</td>
+                    <td class="promise">Growth and advancement opportunities</td>
+                    <td class="reality">Pressured to withdraw from Deputy SPM application</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Index Ratings Explanation -->
+    <div class="card">
+        <h2>Index Ratings Explanation</h2>
+        <div class="rating-cards">
+            <div class="rating-card">
+                <h3 class="rating-title">Stonewalling Index: 86.5</h3>
+                <p class="rating-subtitle">Extreme Institutional Stonewalling</p>
+                <p class="rating-description">Overall measure of SKAO's institutional tactics used to marginalize you while continuing to extract professional value.</p>
+            </div>
+            
+            <div class="rating-card">
+                <h3 class="rating-title">Immigration Vulnerability: 91.0</h3>
+                <p class="rating-subtitle">Extreme Vulnerability</p>
+                <p class="rating-description">Measures how SKAO's visa misrepresentations created maximum dependency through the subclass 995 visa with no PR pathway.</p>
+            </div>
+            
+            <div class="rating-card">
+                <h3 class="rating-title">Promise-Reality Gap: 76.0</h3>
+                <p class="rating-subtitle">Severe Misrepresentation</p>
+                <p class="rating-description">Quantifies the disparity between what was promised during recruitment versus what was actually delivered during employment.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Treatment Evolution Timeline Chart
+        const evolutionCtx = document.getElementById('evolutionChart').getContext('2d');
+        const evolutionChart = new Chart(evolutionCtx, {
+            type: 'line',
+            data: {
+                labels: [
+                    'Recruitment (Nov 2021)', 
+                    'Contract Signing (Jan 2022)', 
+                    'Visa Reality (Feb 2022)', 
+                    'Project Work (2022-2024)', 
+                    'Raising Concerns', 
+                    'Whistleblower Filing (Jan 2025)', 
+                    'Grievance Filing (Feb 2025)', 
+                    'Post-Grievance (Mar 2025)'
+                ],
+                datasets: [
+                    {
+                        label: 'Utilization of Expertise',
+                        data: [95, 90, 85, 95, 90, 90, 85, 90],
+                        borderColor: '#8884d8',
+                        borderWidth: 2,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Professional Respect',
+                        data: [90, 85, 70, 60, 40, 20, 10, 5],
+                        borderColor: '#82ca9d',
+                        borderWidth: 2,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Inclusion in Decisions',
+                        data: [85, 80, 75, 50, 30, 15, 5, 0],
+                        borderColor: '#ffc658',
+                        borderWidth: 2,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Promises Kept',
+                        data: [90, 60, 20, 20, 10, 5, 0, 0],
+                        borderColor: '#ff8042',
+                        borderWidth: 2,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // Marginalization Tactics Chart
+        const marginalizationCtx = document.getElementById('marginalizationChart').getContext('2d');
+        const marginalizationChart = new Chart(marginalizationCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Le Roux-Arries Appointment',
+                    'Leadership Meeting Exclusion',
+                    'Contribution Omission',
+                    'Van Es Intervention',
+                    'Ball\'s Confidentiality Breach'
+                ],
+                datasets: [{
+                    label: 'Severity',
+                    data: [95, 90, 85, 90, 85],
+                    backgroundColor: '#8884d8'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // Promise vs Reality Gap Chart
+        const promiseGapCtx = document.getElementById('promiseGapChart').getContext('2d');
+        const promiseGapChart = new Chart(promiseGapCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Visa Status',
+                    'Job Security',
+                    'Professional Role',
+                    'Career Growth',
+                    'Recognition'
+                ],
+                datasets: [
+                    {
+                        label: 'What Was Promised',
+                        data: [95, 90, 95, 85, 90],
+                        backgroundColor: '#82ca9d'
+                    },
+                    {
+                        label: 'What Was Delivered',
+                        data: [20, 15, 25, 10, 5],
+                        backgroundColor: '#d88884'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // Contribution Exploitation Chart
+        const contributionCtx = document.getElementById('contributionChart').getContext('2d');
+        const contributionChart = new Chart(contributionCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Infrastructure Planning',
+                    'Technical Design Authority',
+                    'Project Management',
+                    'Team Leadership',
+                    'Stakeholder Management'
+                ],
+                datasets: [
+                    {
+                        label: 'Your Contribution Level',
+                        data: [95, 90, 95, 85, 90],
+                        backgroundColor: '#8884d8'
+                    },
+                    {
+                        label: 'Recognition Received',
+                        data: [10, 5, 0, 0, 0],
+                        backgroundColor: '#d88884'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // Immigration Vulnerability Chart (Radar)
+        const immigrationCtx = document.getElementById('immigrationChart').getContext('2d');
+        const immigrationChart = new Chart(immigrationCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Visa With No PR Pathway',
+                    'Abandoned NZ PR Application',
+                    'Employment-Dependent Status',
+                    'Limited Legal Recourse',
+                    'Family Immigration Impact'
+                ],
+                datasets: [{
+                    label: 'Vulnerability Level',
+                    data: [95, 90, 95, 85, 90],
+                    backgroundColor: 'rgba(136, 132, 216, 0.6)',
+                    borderColor: '#8884d8',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // Personal Impact Chart
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        const impactChart = new Chart(impactCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Career Trajectory',
+                    'Immigration Security',
+                    'Professional Standing',
+                    'Family Stability',
+                    'Health & Wellbeing'
+                ],
+                datasets: [
+                    {
+                        label: 'Before SKAO',
+                        data: [90, 85, 90, 85, 90],
+                        backgroundColor: '#8884d8'
+                    },
+                    {
+                        label: 'After Whistleblowing',
+                        data: [20, 15, 25, 20, 25],
+                        backgroundColor: '#d88884'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>
